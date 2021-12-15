@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</head>
+    <body>
+        <button class="button" name="team_data" id="team_data" class="btn btn-info">Team</button>
+        <button class="button" >Map</button>
+        <p>Select Division :</p>
+        <button class="button" name="east_data" id="east_data" class="btn btn-info">East</button>
+        <button class="button" name="west_data" id="west_data" class="btn btn-info">West</button>
+        <div class="container">
+            <div class="table-responsive">
+             <div id="players_table">
+             </div>
+            </div>
+           </div>
+        <div class="map_data"></div>
+          </body>
+         </html>
+         
+        <script type="text/javascript"charset="utf-8">
+            $(document).ready(function(){
+ $('#east_data').click(function(){
+  $.ajax({
+   url:"east.csv",
+   dataType:"text",
+   success:function(data)
+   {
+    var players_data = data.split(/\r?\n|\r/);
+    var table_data = '<table class="table table-bordered table-striped">';
+    for(var count = 0; count<players_data.length; count++)
+    {
+     var cell_data = players_data[count].split(",");
+     table_data += '<tr>';
+     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+     {
+      if(count === 0)
+      {
+       table_data += '<th>'+cell_data[cell_count]+'</th>';
+      }
+      else
+      {
+       table_data += '<td>'+cell_data[cell_count]+'</td>';
+      }
+     }
+     table_data += '</tr>';
+    }
+    table_data += '</table>';
+    $('#players_table').html(table_data);
+   }
+  });
+ });
+ 
+});
+
+$(document).ready(function(){
+ $('#west_data').click(function(){
+  $.ajax({
+   url:"west.csv",
+   dataType:"text",
+   success:function(data)
+   {
+    var players_data = data.split(/\r?\n|\r/);
+    var table_data = '<table class="table table-bordered table-striped">';
+    for(var count = 0; count<players_data.length; count++)
+    {
+     var cell_data = players_data[count].split(",");
+     table_data += '<tr>';
+     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+     {
+      if(count === 0)
+      {
+       table_data += '<th>'+cell_data[cell_count]+'</th>';
+      }
+      else
+      {
+       table_data += '<td>'+cell_data[cell_count]+'</td>';
+      }
+     }
+     table_data += '</tr>';
+    }
+    table_data += '</table>';
+    $('#players_table').html(table_data);
+   }
+  });
+ }); 
+});
+
+$(document).ready(function(){
+ $('#team_data').click(function(){
+  $.ajax({
+   url:"team.csv",
+   dataType:"text",
+   success:function(data)
+   {
+    var players_data = data.split(/\r?\n|\r/);
+    var table_data = '<table class="table table-bordered table-striped">';
+    for(var count = 0; count<players_data.length; count++)
+    {
+     var cell_data = players_data[count].split(",");
+     table_data += '<tr>';
+     for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+     {
+      if(count === 0)
+      {
+       table_data += '<th>'+cell_data[cell_count]+'</th>';
+      }
+      else
+      {
+       table_data += '<td>'+cell_data[cell_count]+'</td>';
+      }
+     }
+     table_data += '</tr>';
+    }
+    table_data += '</table>';
+    $('#players_table').html(table_data);
+   }
+  });
+ }); 
+});
+</script>
+    </body>
+</html>
+
+
+
+
+
